@@ -4,6 +4,7 @@
 
 ### 4.5.0 (in progress)
 
+- [bug] JAVA-2617: Reinstate generation of deps.txt for Insights
 - [improvement] JAVA-2592: Make reload support parameterizable for DefaultDriverConfigLoader
 - [new feature] JAVA-2263: Add optional schema validation to the mapper
 
