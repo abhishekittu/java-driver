@@ -128,6 +128,25 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <id>generate-dependency-list</id>
+            <goals>
+              <goal>list</goal>
+            </goals>
+            <phase>prepare-package</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <includeScope>runtime</includeScope>
+          <outputScope>true</outputScope>
+          <excludeGroupIds>com.datastax.cassandra,com.datastax.dse</excludeGroupIds>
+          <outputFile>${project.build.outputDirectory}/com/datastax/oss/driver/internal/mapper/deps.txt</outputFile>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
