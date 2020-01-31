@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.security.auth.Subject;
+import javax.security.auth.login.AppConfigurationEntry;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
@@ -182,6 +183,17 @@ public abstract class DseGssApiAuthProviderBase implements AuthProvider {
         this.loginConfiguration = loginConfiguration;
         return this;
       }
+      /**
+       * Sets a login configuration that will be used to create a {@link LoginContext}.
+       *
+       * <p>You MUST call either this method or {@link #withSubject(Subject)}; if both are called,
+       * the subject takes precedence, and the login configuration will be ignored.
+       */
+      @NonNull
+      public Builder withLoginConfiguration(@Nullable Map<String, String> loginConfiguration) {
+        this.loginConfiguration = fetchLoginConfiguration(loginConfiguration);
+        return this;
+      }
 
       /**
        * Sets a previously authenticated subject to reuse.
@@ -236,6 +248,21 @@ public abstract class DseGssApiAuthProviderBase implements AuthProvider {
             saslProtocol,
             authorizationId,
             ImmutableMap.copyOf(saslProperties));
+      }
+
+      public static Configuration fetchLoginConfiguration(Map<String, String> options) {
+        return new Configuration() {
+
+          @Override
+          public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
+            return new AppConfigurationEntry[] {
+              new AppConfigurationEntry(
+                  "com.sun.security.auth.module.Krb5LoginModule",
+                  AppConfigurationEntry.LoginModuleControlFlag.REQUIRED,
+                  options)
+            };
+          }
+        };
       }
     }
   }
