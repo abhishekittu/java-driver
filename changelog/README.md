@@ -3,7 +3,7 @@
 <!-- Note: contrary to 3.x, insert new entries *first* in their section -->
 
 ### 4.5.0 (in progress)
-
+- [new feature] JAVA-2226: Provide user-friendly programmatic configuration for kerberos
 - [new feature] JAVA-2263: Add optional schema validation to the mapper
 
 ### 4.4.0
