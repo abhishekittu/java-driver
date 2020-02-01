@@ -4,6 +4,7 @@
 
 ### 4.5.0 (in progress)
 
+- [improvement] JAVA-1556: Publish Maven Bill Of Materials POM
 - [new feature] JAVA-2263: Add optional schema validation to the mapper
 
 ### 4.4.0
