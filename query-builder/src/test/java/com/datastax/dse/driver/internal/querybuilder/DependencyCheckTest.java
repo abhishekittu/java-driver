@@ -15,34 +15,23 @@
  */
 package com.datastax.dse.driver.internal.querybuilder;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import com.datastax.dse.driver.internal.core.util.DependencyBuildCheck;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
-import java.util.Properties;
 import org.junit.Test;
 
 public class DependencyCheckTest {
 
   @Test
   public void should_generate_deps_txt() throws IOException {
-    Properties projectProperties = new Properties();
-    InputStream is = this.getClass().getResourceAsStream("/project.properties");
-    projectProperties.load(is);
-    assertThat(
-            Paths.get(
-                    projectProperties.getProperty("project.basedir"),
-                    "target",
-                    "classes",
-                    "com",
-                    "datastax",
-                    "dse",
-                    "driver",
-                    "internal",
-                    "querybuilder",
-                    "deps.txt")
-                .toFile())
-        .exists();
+    DependencyBuildCheck.assertFileInResourceExists(
+        "target",
+        "classes",
+        "com",
+        "datastax",
+        "dse",
+        "driver",
+        "internal",
+        "querybuilder",
+        "deps.txt");
   }
 }
