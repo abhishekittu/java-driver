@@ -68,6 +68,13 @@
         </includes>
         <filtering>true</filtering>
       </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <excludes>
+          <exclude>project.properties</exclude>
+        </excludes>
+        <filtering>false</filtering>
+      </testResource>
     </testResources>
     <plugins>
       <plugin>

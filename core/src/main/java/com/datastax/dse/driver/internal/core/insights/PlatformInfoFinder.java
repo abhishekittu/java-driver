@@ -85,12 +85,12 @@ class PlatformInfoFinder {
         fetchDependenciesFromFile(
             this.getClass()
                 .getResourceAsStream(
-                    "/com/datastax/oss/driver/internal/mapper/processor/deps.txt"));
+                    "/com/datastax/dse/driver/internal/mapper/processor/deps.txt"));
 
     Map<String, RuntimeAndCompileTimeVersions> mapperRuntimeDeps =
         fetchDependenciesFromFile(
             this.getClass()
-                .getResourceAsStream("/com/datastax/oss/driver/internal/mapper/deps.txt"));
+                .getResourceAsStream("/com/datastax/dse/driver/internal/mapper/deps.txt"));
 
     Map<String, Map<String, RuntimeAndCompileTimeVersions>> runtimeDependencies =
         new LinkedHashMap<>();
